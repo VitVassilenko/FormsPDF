@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    
+    <div class="container">
+        <progress id="file" max="100" value="25"></progress><br>
+        <span>ФИО: </span><br>
+        <input id="name" type="text"><br>
+        <span>ИИН/БИК: </span><br>
+        <input id="docnum" type="number"> <br>
+        <span>Адрес: </span><br>
+        <input id="address" type="text"> <br>
+        <span>Тип справки: </span><br>
+        <textarea id="type" type="text"></textarea> <br>
+        <span>Животные: </span><br>
+        <select id="animals">
+            <option value="">Коровы</option>
+            <option value="">Лошади</option>
+            <option value="">Овцы</option>
+            <option value="">Куры</option>
+            <option value="">Индюки</option>
+            <option value="">Кошки</option>
+            <option value="">Собаки</option>
+        </select> <br>
+        <span>Телефон: </span><br>
+        <input id="phone" type="number" maxlength="12"> <br>
+        <span>Электронная почта: </span><br>
+        <input id="e-mail" type="email"> <br>
+        <div id="date">12-02-2021</div>
+        <button id="btn">Скачать PDF</button>
+    </div>
+
+    <style>
+        progress {
+            margin-top: 150px;
+            margin-bottom: 100px;
+            width: 130%;
+            margin-left: -15%;
+        }
+        .container {
+            width: 720px;
+            margin-top: 200px;
+            margin: 0 auto;
+        }
+        select {
+            width: 42%;
+            height: 25px;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 42%;
+            margin-bottom: 15px;
+        }
+        textarea {
+            width: 42%;
+            margin-bottom: 15px;
+        }
+        #date {
+            margin-top: 15px;
+        }
+        button {
+            margin-top: 50px;
+            margin-left: 80%;
+        }
+    </style>
+           
+    <script src="js/bundle.js"></script>
+</body>
+</html>
