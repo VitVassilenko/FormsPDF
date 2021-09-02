@@ -1,6 +1,9 @@
 node_modules
 /js/*.js 
 !/js/bundle.js
+!/js/Roboto-Regular-normal.js
+!/js/Roboto-Italic-italic.js
+!/js/Roboto-Bold-bold.js
 package.json 
 package-lock.json 
 webpack.config.js 
