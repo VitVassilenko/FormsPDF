@@ -4,100 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <title>VetQyzmet</title>
 </head>
 <body> 
-    
+    <!-- <button>На главную</button> -->
+    <img class="logo" src="/img/logo.png" alt="main_logo">
     <div class="container">
-        <progress id="file" max="100" value="25"></progress><br>
-        <span>ФИО: </span><br>
-        <input id="name" type="text"><br>
-        <span>ИИН/БИК: </span><br>
-        <input id="docnum" type="number"> <br>
-        <span>Адрес: </span><br>
-        <input id="address" type="text"> <br>
-        <span>Тип справки: </span><br>
-        <textarea id="type" type="text"></textarea> <br>
-        <span>Животные: </span><br>
-        <select id="animals">
-            <option value="">Коровы</option>
-            <option value="">Лошади</option>
-            <option value="">Овцы</option>
-            <option value="">Куры</option>
-            <option value="">Индюки</option>
-            <option value="">Кошки</option>
-            <option value="">Собаки</option>
-        </select> <br>
-        <span>Телефон: </span><br>
-        <input id="phone" type="tel" maxlength="12"> <br>
-        <span>Электронная почта: </span><br>
-        <input id="e-mail" type="email"> <br>
+        <h1 class="main__title">Заявка для получение ветеринарной справки</h1>
+        <h2 class="main__subtitle">Заполните форму и мы вам перезвоним</h2>
+        <div class="user-data">
+            <h3 class="user-data__title">ФИО/Организация:</h3>
+            <input id="name" type="text" class="user-data__input">
+        </div>
+        <div class="user-data">
+            <h3 class="user-data__title">ИИН/БИК:</h3>
+            <input id="docnum" type="number" class="user-data__input">
+        </div>
+        <div class="user-data">
+            <h3 class="user-data__title">Адрес:</h3>
+            <input id="address" type="text" class="user-data__input">
+        </div>
+        <div class="user-data">
+            <h3 class="user-data__title">Тип справки:</h3>
+            <input id="type" type="text" class="user-data__input">
+        </div>
+        <div class="user-data">
+            <h3 class="user-data__title">Телефон:</h3>
+            <input id="phone" type="tel" class="user-data__input">
+        </div>
+        <div class="user-data">
+            <h3 class="user-data__title">Электронная почта:</h3>
+            <input id="e-mail" type="email" class="user-data__input">
+        </div>
+        <div class="user-data animals hidden">
+            <h3 class="user-data__title">Животные:</h3>
+            <select id="animals">
+                <option value="">Коровы</option>
+                <option value="">Лошади</option>
+                <option value="">Овцы</option>
+                <option value="">Куры</option>
+                <option value="">Индюки</option>
+                <option value="">Кошки</option>
+                <option value="">Собаки</option>
+            </select>
+        </div>
         <div id="date">12-02-2021</div>
-        <button id="btn">Скачать PDF</button>
+        <button class="btn btn__confirm" id="btn">Скачать PDF</button>
     </div>
-
-    <style>
-        progress {
-            margin-top: 150px;
-            margin-bottom: 100px;
-            width: 130%;
-            margin-left: -15%;
-        }
-        .container {
-            width: 720px;
-            margin-top: 200px;
-            margin: 0 auto;
-        }
-        select {
-            width: 42%;
-            height: 25px;
-            margin-bottom: 15px;
-        }
-        input {
-            width: 42%;
-            margin-bottom: 15px;
-        }
-        textarea {
-            width: 42%;
-            margin-bottom: 15px;
-        }
-        #date {
-            margin-top: 15px;
-        }
-        button {
-            margin-top: 50px;
-            margin-left: 80%;
-        }
-
-        @media screen and (max-width: 800px) {
-            progress {
-                margin: 0 auto;
-                margin-top: 100px;
-                margin-bottom: 70px;
-                width: 120%;
-                margin-left: -10%;
-            }
-            .container {
-                width: 80%;
-                margin-top: 200px;
-                margin: 0 auto;
-            }
-            select {
-            width: 85%;
-            height: 25px;
-            margin-bottom: 15px;
-            }
-            input {
-                width: 85%;
-            }
-            textarea {
-                width: 85%;
-            }
-            button {
-                margin-bottom: 50px;
-            }
-        }
-    </style>
            
     <script src="js/bundle.js"></script>
 </body>
