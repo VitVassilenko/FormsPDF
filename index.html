@@ -12,14 +12,14 @@
 <body> 
     <div class="upper_wrapper">
         <a href="https://vetqyzmet.kz/">
-            <button class="btn on-main hidden">
+            <button class="btn on-main active">
                 <div class="arrow"></div><span class="on-main_text">На главную</span> 
             </button>
         </a>
         <img class="logo" src="img/logo.png" alt="main_logo">
     </div>
     
-    <div class="container container_main hidden">
+    <div class="container container_main active">
         <h1 class="main__title">Заявка на получение ветеринарной справки</h1>
         <h2 class="main__subtitle">Заполните форму и мы вам перезвоним</h2>
         <div class="user-data">
@@ -37,6 +37,7 @@
         <div class="user-data">
             <h3 class="user-data__title">Тип справки:</h3>
             <input id="type" type="text" class="user-data__input">
+            <span class="user-data__info">(Hа животное, продукцию, сырье животного происхождения, корма)</span>
         </div>
         <div class="user-data">
             <h3 class="user-data__title">Телефон:</h3>
@@ -58,14 +59,20 @@
                 <option value="">Собаки</option>
             </select>
         </div>
+        <div class="agreement">
+
+        </div>
         <div id="date">12-02-2021</div>
         <div class="btn__wrapper">
-            <button class="btn btn__primary" id="btn">Скачать PDF</button>
+            <div class="agreement">
+                <input class="agreement__checkbox" id="agreement" type="checkbox"><span class="agreement__text">Данные верны</span>
+            </div>
+            <button class="btn btn__primary btn-disabled" disabled id="btn">Скачать PDF</button>
         </div>
     </div>
 
 
-    <div class="container container_final active">
+    <div class="container container_final hidden">
         <h1 class="main__title main__title_final">Поздравляем, данные отправлены</h1>
         <h2 class="main__subtitle">В ближайшее время с вами свяжется оператор<br>для уточнения указанных данных</h2>
         <div class="btn__wrapper btn__wrapper_final">
