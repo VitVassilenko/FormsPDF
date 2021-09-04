@@ -12,14 +12,14 @@
 <body> 
     <div class="upper_wrapper">
         <a href="https://vetqyzmet.kz/">
-            <button class="btn on-main">
+            <button class="btn on-main hidden">
                 <div class="arrow"></div><span class="on-main_text">На главную</span> 
             </button>
         </a>
         <img class="logo" src="img/logo.png" alt="main_logo">
     </div>
     
-    <div class="container">
+    <div class="container container_main hidden">
         <h1 class="main__title">Заявка на получение ветеринарной справки</h1>
         <h2 class="main__subtitle">Заполните форму и мы вам перезвоним</h2>
         <div class="user-data">
@@ -60,7 +60,21 @@
         </div>
         <div id="date">12-02-2021</div>
         <div class="btn__wrapper">
-            <button class="btn btn__confirm" id="btn">Скачать PDF</button>
+            <button class="btn btn__primary" id="btn">Скачать PDF</button>
+        </div>
+    </div>
+
+
+    <div class="container container_final active">
+        <h1 class="main__title main__title_final">Поздравляем, данные отправлены</h1>
+        <h2 class="main__subtitle">В ближайшее время с вами свяжется оператор<br>для уточнения указанных данных</h2>
+        <div class="btn__wrapper btn__wrapper_final">
+            <a href="https://forms.vetqyzmet.kz/">
+                <button class="btn btn__secondary" id="btn">Заполнить новую заявку</button>
+            </a>
+            <a href="https://vetqyzmet.kz/">
+                <button class="btn btn__primary" id="btn">Вернуться на VetQyzmet.kz</button>
+            </a>
         </div>
     </div>
            
