@@ -1,5 +1,6 @@
 node_modules
-/js/*.js 
+/js/*.js
+!/js/script.js
 !/js/bundle.js
 !/js/Roboto-Regular-normal.js
 !/js/Roboto-Italic-italic.js
