@@ -38,7 +38,7 @@ const randNum = Math.floor(Math.random() * 10000);
     jsPDF.API.events.push(['addFonts', callAddFont])
 })(jsPDF.API);
 
-function PDFCreator(userName='', userDocNum='', userAddress='', userType='', userPhone='', userEMail='', date='') {
+function PDFCreator(orderNum=0 ,userName='', userDocNum='', userAddress='', userType='', userPhone='', userEMail='', date='') {
     
 
     const doc = new jsPDF();
@@ -106,7 +106,7 @@ function PDFCreator(userName='', userDocNum='', userAddress='', userType='', use
     
 
     textNode(10, `
-    Номер заявления: ${randNum}
+    Номер заявления: ${orderNum}
     `, 30, 138, 'black', 'left', 'italic');
 
     textNode(14, `
@@ -177,25 +177,29 @@ function PDFCreator(userName='', userDocNum='', userAddress='', userType='', use
     // Открывается в новом окне 
     // window.open(URL.createObjectURL(doc.output("blob", {filename: `VetQyzmet_Zayavka_No:${randNum}.pdf`})));
     // Тупо скачивается молча
-    return doc.save(`VetQyzmet_Zayavka_No:${randNum}.pdf`);
+    return doc.save(`VetQyzmet_Zayavka_No:${orderNum}.pdf`);
     }
 
 // Сохранение геоданных
-let clientLatitude = 0,
-    clientLongitude = 0 ;
+    let clientLatitude = 0,
+        clientLongitude = 0;
+try {
+    window.addEventListener('load', () => {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    });
 
-// window.addEventListener('load', () => {
-//     navigator.geolocation.getCurrentPosition(showPosition);
-// });
+    function showPosition(position) {
+        console.log(position.coords.latitude);
+        console.log(position.coords.longitude);
+        clientLatitude = position.coords.latitude;
+        clientLongitude = position.coords.longitude;
+    }
 
-// function showPosition(position) {        
-//     console.log(position.coords.latitude);
-//     clientLatitude = position.coords.latitude;
-//     console.log();
-//     clientLongitude = position.coords.longitude;
-// }
+} 
+catch {
+    console.log('Oooops!');
+}
 
-// showPosition();
 
 
 // Получение и отправка данных
@@ -213,7 +217,8 @@ const containerMain = document.querySelector('.container_main'),
       nowDate =  `${new Date().toLocaleDateString()}`,
       agreement = document.querySelector('#agreement'),
       btn = document.querySelector('#btn'),
-      reloadBtn = document.querySelector('#reloadBtn');
+      reloadBtn = document.querySelector('#reloadBtn'),
+      subtitle = document.querySelector('#subtitle');
 
 
     function buttonActivate() {
@@ -234,43 +239,39 @@ const containerMain = document.querySelector('.container_main'),
 
 
     function waitServer() {
-        loader.classList.remove('hidden');
-        loader.classList.add('active');
-        
         // Запрос на сервер будет здесь:
-        let url = `https://admin.vetqyzmet.kz/api/order/`;
+        let url = `https://admin.vetqyzmet.kz/api/order`;
         fetch(url, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: {
-                "NAME": name.value,
-                "IIN": docNum.value,
-                "ADDR": address.value,
-                "REFERENCE_TYPE": type.value,
-                "PHONE": phone.value,
-                "EMAIL": eMail.value,
-                "LONGITUDE": clientLongitude,
-                "LATITUDE": clientLatitude
-            }
+            body: JSON.stringify({
+                NAME: name.value,
+                IIN: docNum.value,
+                ADDR: address.value,
+                REFERENCE_TYPE: type.value,
+                PHONE: phone.value,
+                EMAIL: eMail.value,
+                LONGITUDE: clientLongitude,
+                LATITUDE: clientLatitude
+            })
         }).then(response=>response.json().then(json=>({status:response.status, body:json})))
         .then(result=>{
             console.log(result.body);
-        }).catch(error => {
-            alert('Ошибка сервера, попробуйте повторить позже');
-        })
-
-
-        setTimeout(() => {
-            PDFCreator(name.value, docNum.value, address.value, type.value, phone.value, eMail.value, nowDate);
+            const orderNum = result.body.data.id; 
+            PDFCreator(orderNum, name.value, docNum.value, address.value, type.value, phone.value, eMail.value, nowDate);
+            subtitle.innerHTML= `В ближайшее время с вами свяжется оператор.<br> Номер вашей заявки: <span>${orderNum}</span>`;
             loader.classList.remove('active');
             loader.classList.add('hidden');
             onMain.classList.remove('active');
             onMain.classList.add('hidden');
             containerFinal.classList.remove('hidden');
             containerFinal.classList.add('active');
-        }, randNum)
+        }).catch(error => {
+            alert('Ошибка сервера, попробуйте повторить позже');
+        })
+
     }
 
     btn.addEventListener('click', (e) =>{
@@ -278,6 +279,8 @@ const containerMain = document.querySelector('.container_main'),
         if (agreement.checked) {
             containerMain.classList.remove('active');
             containerMain.classList.add('hidden');
+            loader.classList.remove('hidden');
+            loader.classList.add('active');
             waitServer();
         } else {
             console.log('Button disabled');
